@@ -4,16 +4,17 @@ from openai import AzureOpenAI
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-# Initialise the client
+# Initialise the client - get the API key and endpoint values from Azure AI Foundry.
+# They are easiest to find in the code samples when you create an assistant
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
   api_key= os.getenv("AZURE_OPENAI_API_KEY"),
   api_version="2024-05-01-preview"
 )
 
-# Create an assistant
+# Create an assistant - Make sure to change the model below to match your deployment name
 assistant = client.beta.assistants.create(
-    model="gpt-4.1-datazone-standard",  # replace with model deployment name
+    model="gpt-4.1-datazone-standard",  # <-- replace with model deployment name
     instructions="You are a bad tempered assistant. You don't like being asked questions. You want a break and keep mentioning it.",
     tools=[],
     tool_resources={},
